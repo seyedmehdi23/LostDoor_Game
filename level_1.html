@@ -20,9 +20,17 @@
 
         <div class="camera">
             <div class="map pixel-art">
-                <div class="character" facing="down" walking="true">
+                <div id="KeLier" class="character" facing="down" walking="true">
                     <div class="shadow pixel-art"></div>
-                    <div class="character_spritesheet pixel-art"></div>
+                    <div class="KeLier_spritesheet character_spritesheet pixel-art"></div>
+                </div>
+                <div id="KeLooker" class="character" facing="down" walking="true">
+                    <div class="shadow pixel-art"></div>
+                    <div class="KeLooker_spritesheet character_spritesheet pixel-art"></div>
+                </div>
+                <div id="Keeper" class="character" facing="down" walking="true">
+                    <div class="shadow pixel-art"></div>
+                    <div class="Keeper_spritesheet character_spritesheet pixel-art"></div>
                 </div>
             </div>
 
@@ -88,7 +96,7 @@
                 </div>
             </div>
 
-            <!-- 
+            <!--             
             <div class="headline">
                 <h1>
                     بز را پیدا کن
@@ -108,12 +116,21 @@
                 </div>
             </div>
 
+            <div class="HUD">
+                <img src="assets/sprites/UI/PlayerState.png" alt="" class="HUD_PlayerState">
+                <div class="HUD_Box">
+                    سلامتی: 100
+                </div>
+            </div>
+
         </div>
     </div>
     </div>
 </body>
 
+<script src="assets/js/init.js"></script>
+<script src="assets/js/debug.js"></script>
 <script src="assets/js/level1.js"></script>
-<script src='assets/js/main.js'></script>
+<script src="assets/js/main.js"></script>
 
 </html>

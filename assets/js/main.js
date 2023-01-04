@@ -1,50 +1,63 @@
-var character = document.querySelector(".character");
+var player = document.querySelector("#KeLier");
 var map = document.querySelector(".map");
 var intract_dialog = document.querySelector(".intract_dialog");
 var intract_dialog_text = document.querySelector(".intract_dialog_text");
 
-var debug_dialog = document.querySelector(".debug_dialog");
-var debug_dialog_text = document.querySelector(".debug_dialog_text");
+// start in the middle of the map
+var player_x = playerSpawn_x;
+var player_y = PlayerSpawn_y;
+var held_directions = []; // State of which arrow keys we are holding down
+var speed = 1; // How fast the character moves in pixels per frame
 
-//start in the middle of the map
-var x = 0;
-var y = 50;
-var held_directions = []; //State of which arrow keys we are holding down
-var speed = 1; //How fast the character moves in pixels per frame
-var trigger_offset = 10;
-
-const placeCharacter = () => {
-
-    var pixelSize = parseInt(
-        getComputedStyle(document.documentElement).getPropertyValue('--pixel-size')
-    );
+const placePlayer = () => {
 
     const held_direction = held_directions[0];
     if (held_direction) {
-        if (held_direction === directions.right) { x += speed; }
-        if (held_direction === directions.left) { x -= speed; }
-        if (held_direction === directions.down) { y += speed; }
-        if (held_direction === directions.up) { y -= speed; }
-        character.setAttribute("facing", held_direction);
+        if (held_direction === directions.right) { player_x += speed; }
+        if (held_direction === directions.left) { player_x -= speed; }
+        if (held_direction === directions.down) { player_y += speed; }
+        if (held_direction === directions.up) { player_y -= speed; }
+        player.setAttribute("facing", held_direction);
     }
-    character.setAttribute("walking", held_direction ? "true" : "false");
+    player.setAttribute("walking", held_direction ? "true" : "false");
 
-    //Limits (gives the illusion of walls)
+    // Limits (gives the illusion of walls)
     var leftLimit = -95;
     var rightLimit = (16 * 6);
     var topLimit = -8 + 32;
     var bottomLimit = (16 * 7);
-    if (x < leftLimit) { x = leftLimit; }
-    if (x > rightLimit) { x = rightLimit; }
-    if (y < topLimit) { y = topLimit; }
-    if (y > bottomLimit) { y = bottomLimit; }
+    if (player_x < leftLimit) { player_x = leftLimit; }
+    if (player_x > rightLimit) { player_x = rightLimit; }
+    if (player_y < topLimit) { player_y = topLimit; }
+    if (player_y > bottomLimit) { player_y = bottomLimit; }
 
-    show_debug_dialog("PlayerX:"+x + " PlayerY:"+y);
-    if (typeof triggers !== 'undefined') {
-        var player_data = { x: x, y: y };
-        // if (is_trigger(x,y, trigger.pos_x, trigger.pos_y))
+    // Unstable Feature: Place Player in Center of Camera View (Camera Follow Needed!)
+    var camera_left = pixelSize * 66;
+    var camera_top = pixelSize * 42;
+    var player_left_offset = pixelSize * 88;
+
+    map.style.transform = `translate3d( ${-player_x * pixelSize + camera_left}px, ${-player_y * pixelSize + camera_top}px, 0 )`;
+    player.style.transform = `translate3d( ${player_x * pixelSize + player_left_offset}px, ${player_y * pixelSize}px, 0 )`;
+}
+
+function show_intract_dialog(msg) {
+    intract_dialog_text.innerText = msg;
+    intract_dialog.style.display = "block";
+}
+
+function hide_intract_dialog() {
+    intract_dialog.style.display = "none";
+}
+
+// Set up the game loop
+const frame_handler = () => {
+    placePlayer();
+    if (debug_mode)
+        load_DebugTools();
+
+    if (typeof have_trigger != 'undefined' && have_trigger == true) {
+        var player_data = { x: player_x, y: player_y };
         trigger = check_triggers(player_data);
-        // console.log(trigger);
         if (typeof trigger !== 'undefined') {
             if (typeof trigger.msg !== 'undefined') {
                 show_intract_dialog(trigger.msg);
@@ -57,59 +70,17 @@ const placeCharacter = () => {
         } else {
             hide_intract_dialog();
         }
-        // for (let i = 0; i < triggers.length; i++) {
-        //     let trigger = triggers[i];
-        // }
     }
-
-
-    var camera_left = pixelSize * 66;
-    var camera_top = pixelSize * 42;
-
-    var character_left = pixelSize * 88;
-
-    map.style.transform = `translate3d( ${-x * pixelSize + camera_left}px, ${-y * pixelSize + camera_top}px, 0 )`;
-    character.style.transform = `translate3d( ${x * pixelSize + character_left}px, ${y * pixelSize}px, 0 )`;
-}
-
-function show_intract_dialog(msg) {
-    intract_dialog_text.innerText = msg;
-    intract_dialog.style.display = "block";
-}
-
-function hide_intract_dialog() {
-    intract_dialog.style.display = "none";
-}
-
-function show_debug_dialog(msg) {
-    debug_dialog_text.innerHTML = "DEBUG_MODE<br>"+msg;
-    debug_dialog.style.display = "block";
-}
-
-//Set up the game loop
-const step = () => {
-    placeCharacter();
+    Update();
     window.requestAnimationFrame(() => {
-        step();
+        frame_handler();
     })
 }
-step(); //kick off the first step!
 
+Start(); // First Frame Call
+frame_handler();
+Update(); // Every Frame Call
 
-
-/* Direction key state */
-const directions = {
-    up: "up",
-    down: "down",
-    left: "left",
-    right: "right",
-}
-const keys = {
-    38: directions.up,
-    37: directions.left,
-    39: directions.right,
-    40: directions.down,
-}
 document.addEventListener("keydown", (e) => {
     var dir = keys[e.which];
     if (dir && held_directions.indexOf(dir) === -1) {
@@ -124,8 +95,6 @@ document.addEventListener("keyup", (e) => {
         held_directions.splice(index, 1)
     }
 });
-
-
 
 /* BONUS! Dpad functionality for mouse and touch */
 var isPressed = false;
@@ -155,7 +124,8 @@ const handleDpadPress = (direction, click) => {
         document.querySelector(".dpad-" + direction).classList.add("pressed");
     }
 }
-//Bind a ton of events for the dpad
+
+// Bind a ton of events for the dpad
 document.querySelector(".dpad-left").addEventListener("touchstart", (e) => handleDpadPress(directions.left, true));
 document.querySelector(".dpad-up").addEventListener("touchstart", (e) => handleDpadPress(directions.up, true));
 document.querySelector(".dpad-right").addEventListener("touchstart", (e) => handleDpadPress(directions.right, true));
@@ -170,4 +140,3 @@ document.querySelector(".dpad-left").addEventListener("mouseover", (e) => handle
 document.querySelector(".dpad-up").addEventListener("mouseover", (e) => handleDpadPress(directions.up));
 document.querySelector(".dpad-right").addEventListener("mouseover", (e) => handleDpadPress(directions.right));
 document.querySelector(".dpad-down").addEventListener("mouseover", (e) => handleDpadPress(directions.down));
-

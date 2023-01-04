@@ -73,7 +73,7 @@ body {
 
 .map {
    image-rendering: pixelated;
-   background-image: url("../sprites/maps/map_default.png");
+   background-image: url("../sprites/maps/doors_place.png");
    background-size: 100%;
    width: calc(13 * var(--grid-cell));
    height: calc(10 * var(--grid-cell));
@@ -97,9 +97,26 @@ body {
    background-size: 100%;
 }
 
-.character_spritesheet {
+
+.KeLier_spritesheet {
    position: absolute;
-   background: url("../sprites/characters/Default_Character.png") no-repeat no-repeat;
+   background: url("../sprites/characters/KeLier.png") no-repeat no-repeat;
+   background-size: 100%;
+   width: calc(var(--grid-cell)* 8);
+   height: calc(var(--grid-cell)* 8);
+}
+
+.KeLooker_spritesheet {
+   position: absolute;
+   background: url("../sprites/characters/KeLooker.png") no-repeat no-repeat;
+   background-size: 100%;
+   width: calc(var(--grid-cell)* 8);
+   height: calc(var(--grid-cell)* 8);
+}
+
+.Keeper_spritesheet {
+   position: absolute;
+   background: url("../sprites/characters/Keeper.png") no-repeat no-repeat;
    background-size: 100%;
    width: calc(var(--grid-cell)* 8);
    height: calc(var(--grid-cell)* 8);
@@ -232,7 +249,6 @@ body {
    width: calc(var(--pixel-size) * 75)
 }
 
-
 .intract_dialog {
    display: none;
    outline: var(--pixel-size) solid #fff;
@@ -241,12 +257,11 @@ body {
    font-size: 30px;
    position: absolute;
    bottom: calc(var(--pixel-size) * 2);
-   left: calc(var(--pixel-size) * 2);
+   left: calc(13 * var(--grid-cell) - var(--pixel-size) * 75);
    width: calc(var(--pixel-size) * 75);
    padding-top: calc(var(--pixel-size) * 2);
    padding-bottom: calc(var(--pixel-size) * 3);
 }
-
 
 .debug_dialog {
    display: none;
@@ -255,9 +270,39 @@ body {
    text-align: center;
    font-size: 25px;
    position: absolute;
-   top: calc(var(--pixel-size) * 2);
+   bottom: calc(var(--pixel-size) * 2);
    left: calc(var(--pixel-size) * 2);
    width: calc(var(--pixel-size) * 75);
    padding-top: calc(var(--pixel-size) * 2);
    padding-bottom: calc(var(--pixel-size) * 3);
+}
+
+.HUD {
+   position: absolute;
+   top: calc(var(--pixel-size) * 2);
+   left: calc(var(--pixel-size) * 2);
+   width: calc(var(--pixel-size) * 75);
+}
+
+.HUD_Box {
+   outline: var(--pixel-size) solid #fff;
+   background-color: rgb(246, 241, 226);
+   text-align: right;
+   font-size: 20px;
+   padding-top: calc(var(--pixel-size) * 2);
+   padding-bottom: calc(var(--pixel-size) * 3);
+   padding-right: calc(var(--pixel-size) * 3) ;
+   margin-top: calc(var(--pixel-size) * 9) ;
+   margin-left: calc(var(--pixel-size) * 10) ;
+}
+
+.HUD_PlayerState {
+   left: 0;
+   position: absolute;
+   /* background: url("../sprites/UI/PlayerState.png") no-repeat no-repeat; */
+   /* width: 500px; */
+   width: calc(var(--pixel-size) * 23);
+
+   /* height: 500px; */
+   image-rendering: pixelated;
 }
