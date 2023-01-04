@@ -6,6 +6,9 @@ var have_trigger = true;
 var trigger_1 = { pos_x: -63, pos_y: 33, msg: "یه کلید شکسته", one_time_use: false, lock: false };
 var trigger_2 = { pos_x: 50, pos_y: 100, action: "console.log('boz')", one_time_use: true, lock: false };
 
+// ToDo: create Stateless trigger handler
+// ToDo: functional trigger action
+
 function check_triggers(player_data) {
     var trigger = undefined;
     if (is_trigger(player_data, trigger_1)) if (!trigger_1.lock) trigger = trigger_1;

@@ -3,6 +3,8 @@ var map = document.querySelector(".map");
 var intract_dialog = document.querySelector(".intract_dialog");
 var intract_dialog_text = document.querySelector(".intract_dialog_text");
 
+// ToDo: Create UnDependence Player Module
+
 // start in the middle of the map
 var player_x = playerSpawn_x;
 var player_y = PlayerSpawn_y;
@@ -22,6 +24,7 @@ const placePlayer = () => {
     player.setAttribute("walking", held_direction ? "true" : "false");
 
     // Limits (gives the illusion of walls)
+    // ToDo: Map Limit Define By Level Script
     var leftLimit = -95;
     var rightLimit = (16 * 6);
     var topLimit = -8 + 32;
@@ -55,6 +58,7 @@ const frame_handler = () => {
     if (debug_mode)
         load_DebugTools();
 
+    // ToDo: Create UnDependence Trigger Module
     if (typeof have_trigger != 'undefined' && have_trigger == true) {
         var player_data = { x: player_x, y: player_y };
         trigger = check_triggers(player_data);
@@ -80,6 +84,8 @@ const frame_handler = () => {
 Start(); // First Frame Call
 frame_handler();
 Update(); // Every Frame Call
+
+// ToDo: Create UnDependence Controller Module
 
 document.addEventListener("keydown", (e) => {
     var dir = keys[e.which];
