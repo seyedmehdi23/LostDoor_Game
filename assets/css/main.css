@@ -37,7 +37,7 @@
    font-family: "PixelFont";
 }
 
-.fade_panel {
+.Fade-Panel {
    animation: fadeInAnimation ease 3s;
    animation-iteration-count: 1;
    animation-fill-mode: forwards;
@@ -49,13 +49,33 @@
    color: #000000;
 }
 
+.FadeOut-Panel {
+   animation: fadeOutAnimation ease 1s;
+   animation-iteration-count: 1;
+   animation-fill-mode: forwards;
+}
+
 @keyframes fadeInAnimation {
    0% {
       opacity: 1;
+      pointer-events: all;
    }
 
    100% {
       opacity: 0;
+      pointer-events: none;
+   }
+}
+
+@keyframes fadeOutAnimation {
+   0% {
+      opacity: 0;
+      pointer-events: none;
+   }
+
+   100% {
+      opacity: 1;
+      pointer-events: all;
    }
 }
 
@@ -85,7 +105,7 @@ body {
    position: relative;
 }
 
-.camera {
+.camera-Viewport {
    /* width: calc(var(--pixel-size) * 160); */
    width: 90vw;
    height: calc(var(--pixel-size) * 144);
@@ -231,6 +251,8 @@ body {
 
 .dpad {
    user-select: none;
+   margin-bottom: calc(var(--pixel-size) * 5);
+   margin-right: calc(var(--pixel-size) * 6);
 }
 
 
@@ -273,10 +295,12 @@ body {
    position: absolute;
    top: calc(var(--pixel-size) * 2);
    right: calc(var(--pixel-size) * 2);
-   width: calc(var(--pixel-size) * 75)
+   width: calc(var(--pixel-size) * 75);
+   margin-top: calc(var(--pixel-size) * 9);
+   margin-right: calc(var(--pixel-size) * 10);
 }
 
-.intract_dialog {
+.Intract-Dialog {
    display: none;
    outline: var(--pixel-size) solid #fff;
    background-color: rgb(255, 245, 159);
@@ -288,9 +312,10 @@ body {
    width: calc(var(--pixel-size) * 75);
    padding-top: calc(var(--pixel-size) * 2);
    padding-bottom: calc(var(--pixel-size) * 3);
+   margin-bottom: calc(var(--pixel-size) * 9);
 }
 
-.debug_dialog {
+.Debug-Dialog {
    display: none;
    outline: var(--pixel-size) solid #fff;
    background-color: rgb(216, 172, 255);
@@ -302,6 +327,8 @@ body {
    width: calc(var(--pixel-size) * 75);
    padding-top: calc(var(--pixel-size) * 2);
    padding-bottom: calc(var(--pixel-size) * 3);
+   margin-bottom: calc(var(--pixel-size) * 9);
+   margin-left: calc(var(--pixel-size) * 10);
 }
 
 .HUD {
@@ -311,7 +338,7 @@ body {
    width: calc(var(--pixel-size) * 75);
 }
 
-.HUD_Box {
+.HUD-Box {
    outline: var(--pixel-size) solid #fff;
    background-color: rgb(246, 241, 226);
    text-align: right;
@@ -323,7 +350,7 @@ body {
    margin-left: calc(var(--pixel-size) * 10);
 }
 
-.HUD_PlayerState {
+.HUD-PlayerState {
    left: 0;
    position: absolute;
    /* background: url("../sprites/UI/PlayerState.png") no-repeat no-repeat; */

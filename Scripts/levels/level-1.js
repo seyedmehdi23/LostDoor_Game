@@ -3,8 +3,8 @@
 var have_trigger = true;
 
 // list of triggers (variable name is not matter but in check_triggers function this variables must be called and handled)
-var trigger_1 = { pos_x: -63, pos_y: 33, msg: "یه کلید شکسته", one_time_use: false, lock: false };
-var trigger_2 = { pos_x: 50, pos_y: 100, action: "console.log('boz')", one_time_use: true, lock: false };
+var trigger_1 = { pos_x: -63, pos_y: 33, action: "show_intract_dialog('یه کلید شکسته')", one_time_use: false, lock: false };
+var trigger_2 = { pos_x: 50, pos_y: 100, action: "LoadLevel('level_2.html')", one_time_use: true, lock: false };
 
 // ToDo: create Stateless trigger handler
 // ToDo: functional trigger action

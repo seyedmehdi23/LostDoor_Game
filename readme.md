@@ -1,16 +1,17 @@
-Lost_Door Game
+
+# Lost_Door Game
 
 --------------
 
-# ToDo
+## ToDo
 
-## Story
+### Story
 
 - [ ] Timeline <!-- this Week -->
 - [ ] Storytelling Timeline (GamePlay Based) <!-- this Week -->
 - [ ] Characters BackStory <!-- tonight -->
 
-## GameDesign
+### GameDesign
 
 - [ ] GamePlay Timeline (Story Based) <!-- this Week -->
 - [ ] Challenged Health System <!-- next Week -->
@@ -19,17 +20,18 @@ Lost_Door Game
 - [ ] Goals & Challenge Bounty Balance <!-- later -->
 - [ ] Rest System <!-- later -->
 
-## Code
+### Code
 
-- [ ] Switch Beetwen Levels <!-- tonight -->
+- [x] Switch Beetwen Levels <!-- tonight -->
 - [ ] Invertory <!-- tonight or tommorow -->
 - [ ] Pickup Item <!-- tonight or tommorow -->
 - [ ] Conversation System <!-- this week -->
 - [ ] Invertory Events & Invokes <!-- this week -->
 - [ ] Save Module <!-- this week -->
 - [ ] Save Events & Invokes <!-- this week -->
+- [ ] Levels Management Module <!-- this week -->
 
-## Music
+### Music
 
 - [ ] Minor Tempo
 - [ ] Major Tempo
