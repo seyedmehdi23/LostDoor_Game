@@ -3,5 +3,5 @@ function LoadLevel(level_name) {
     fadePanel.classList.add("FadeOut-Panel");
     setTimeout(function() {
         document.location.href = "Levels/" + level_name;
-    }, 1000);
+    }, 500);
 }

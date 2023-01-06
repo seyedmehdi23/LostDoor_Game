@@ -1,4 +1,3 @@
-<!-- ToDo: Unit Including System -->
 
 <!DOCTYPE html>
 <html>
@@ -9,7 +8,7 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>LostDoor_Game</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='assets/css/main.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='Assets/css/main.css'>
 </head>
 
 <body>
@@ -26,14 +25,15 @@
                     <div class="shadow pixel-art"></div>
                     <div class="KeLier_spritesheet character_spritesheet pixel-art"></div>
                 </div>
-                <div id="KeLooker" class="character" facing="down" walking="true">
+                <div id="KeLooker" class="character" facing="down" walking="false">
                     <div class="shadow pixel-art"></div>
                     <div class="KeLooker_spritesheet character_spritesheet pixel-art"></div>
                 </div>
-                <div id="Keeper" class="character" facing="down" walking="true">
+                <div id="Keeper" class="character" facing="down" walking="false">
                     <div class="shadow pixel-art"></div>
                     <div class="Keeper_spritesheet character_spritesheet pixel-art"></div>
                 </div>
+
             </div>
 
             <div view-include="UI">
@@ -112,7 +112,7 @@
                 </div>
 
                 <div class="HUD">
-                    <img src="assets/sprites/UI/PlayerState.png" alt="" class="HUD-PlayerState">
+                    <img src="Assets/sprites/UI/PlayerState.png" alt="" class="HUD-PlayerState">
                     <div class="HUD-Box">سلامتی: 100</div>
                 </div>
             </div>
@@ -122,25 +122,13 @@
     </div>
 </body>
 
-<!-- <script src="Scripts/lib/jquery-3.6.3.min.js"></script>
-<script>
-    $(function () {
-        var includes = $('[view-include]')
-        $.each(includes, function () {
-            var include_name = $(this)[0].getAttribute("view-include");
-            var file = 'Views/' + include_name + '.html';
-            console.log(file);
-            $(this).load(file)
-        })
-    })
-</script> -->
-<script src="Scripts/init.js"></script>
+<script src="Scripts/initialize.js"></script>
 <script src="Scripts/levels/level-1.js"></script>
-<script src="Scripts/utils/debug.js"></script>
 <script src="Scripts/handlers/ui.js"></script>
 <script src="Scripts/handlers/trigger.js"></script>
 <script src="Scripts/handlers/control.js"></script>
 <script src="Scripts/LevelsManagement.js"></script>
-<script src="Scripts/core.js"></script>
+<script src="Scripts/utils/debug.js"></script>
+<script src="Scripts/Core.js"></script>
 
 </html>

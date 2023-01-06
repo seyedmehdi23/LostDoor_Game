@@ -43,19 +43,21 @@ const placePlayer = () => {
 const frame_handler = () => {
     Update();
     placePlayer();
-    
-    if (debug_mode)
-        load_DebugTools();
 
-        var player_data = { x: player_x, y: player_y };
-        var trigger_action = trigger_recognize(player_data);
-        if (typeof trigger_action !== 'undefined')
-            eval(trigger_action);
-        
+    if (DebugMode)
+        DebugPlayerInfo();
+
+    var player_data = { x: player_x, y: player_y };
+    var trigger_action = trigger_recognize(player_data);
+    if (typeof trigger_action !== 'undefined')
+        eval(trigger_action);
+
     window.requestAnimationFrame(() => {
         frame_handler();
     })
 }
 
+if (DebugMode)
+    DebugTriggerVisualization();
 Start(); // First Frame Call
 frame_handler(); // Every Frame Call

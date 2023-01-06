@@ -50,7 +50,7 @@
 }
 
 .FadeOut-Panel {
-   animation: fadeOutAnimation ease 1s;
+   animation: fadeOutAnimation ease 0.5s;
    animation-iteration-count: 1;
    animation-fill-mode: forwards;
 }
@@ -317,8 +317,8 @@ body {
 
 .Debug-Dialog {
    display: none;
-   outline: var(--pixel-size) solid #fff;
-   background-color: rgb(216, 172, 255);
+   outline: var(--pixel-size) solid rgb(193, 255, 184);
+   background-color: rgb(97, 255, 53);
    text-align: center;
    font-size: 25px;
    position: absolute;
@@ -329,6 +329,17 @@ body {
    padding-bottom: calc(var(--pixel-size) * 3);
    margin-bottom: calc(var(--pixel-size) * 9);
    margin-left: calc(var(--pixel-size) * 10);
+}
+
+.Debug-Trigger {
+   width: calc(var(--grid-cell));
+   height: calc(var(--grid-cell));
+   position: absolute;
+   overflow: hidden;
+   outline: var(--pixel-size) solid rgb(193, 255, 184);
+   background-color: rgb(97, 255, 53);
+   text-align: center;
+   font-size: 25px;
 }
 
 .HUD {
