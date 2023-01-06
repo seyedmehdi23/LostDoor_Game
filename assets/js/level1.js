@@ -19,13 +19,16 @@ function check_triggers(player_data) {
 function Start() {
 
     var KeLooker = document.querySelector("#KeLooker");
-    placeCharacter(KeLooker, 100, 50);
+    placeCharacter(KeLooker, 300, 30);
 
     var Keeper = document.querySelector("#Keeper");
-    placeCharacter(Keeper, 0, 50);
+    placeCharacter(Keeper, 0, 30);
 
     playerSpawn_x = 0;
     PlayerSpawn_y = 50;    
+
+    map_padding_x = 5;
+    map_padding_y = 10;
 }
 
 function Update() {

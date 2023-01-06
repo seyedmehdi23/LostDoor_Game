@@ -10,6 +10,7 @@ var player_x = playerSpawn_x;
 var player_y = PlayerSpawn_y;
 var held_directions = []; // State of which arrow keys we are holding down
 var speed = 1; // How fast the character moves in pixels per frame
+player.style.zIndex = "10";
 
 const placePlayer = () => {
 
@@ -25,10 +26,10 @@ const placePlayer = () => {
 
     // Limits (gives the illusion of walls)
     // ToDo: Map Limit Define By Level Script
-    var leftLimit = -95;
-    var rightLimit = (16 * 6);
-    var topLimit = -8 + 32;
-    var bottomLimit = (16 * 7);
+    var leftLimit = -95 + map_padding_x;
+    var rightLimit = (16 * 6) - map_padding_x;
+    var topLimit = -8 + 32 + map_padding_y;
+    var bottomLimit = (16 * 7) - map_padding_y;
     if (player_x < leftLimit) { player_x = leftLimit; }
     if (player_x > rightLimit) { player_x = rightLimit; }
     if (player_y < topLimit) { player_y = topLimit; }
@@ -54,6 +55,7 @@ function hide_intract_dialog() {
 
 // Set up the game loop
 const frame_handler = () => {
+    Update();
     placePlayer();
     if (debug_mode)
         load_DebugTools();
@@ -75,15 +77,13 @@ const frame_handler = () => {
             hide_intract_dialog();
         }
     }
-    Update();
     window.requestAnimationFrame(() => {
         frame_handler();
     })
 }
 
 Start(); // First Frame Call
-frame_handler();
-Update(); // Every Frame Call
+frame_handler(); // Every Frame Call
 
 // ToDo: Create UnDependence Controller Module
 

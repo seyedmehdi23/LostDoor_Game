@@ -37,6 +37,28 @@
    font-family: "PixelFont";
 }
 
+.fade_panel {
+   animation: fadeInAnimation ease 3s;
+   animation-iteration-count: 1;
+   animation-fill-mode: forwards;
+   z-index: 100;
+   width: 100%;
+   height: 100%;
+   position: absolute;
+   background-color: black;
+   color: #000000;
+}
+
+@keyframes fadeInAnimation {
+   0% {
+      opacity: 1;
+   }
+
+   100% {
+      opacity: 0;
+   }
+}
+
 html,
 body {
    height: 100%;
@@ -296,9 +318,9 @@ body {
    font-size: 20px;
    padding-top: calc(var(--pixel-size) * 2);
    padding-bottom: calc(var(--pixel-size) * 3);
-   padding-right: calc(var(--pixel-size) * 3) ;
-   margin-top: calc(var(--pixel-size) * 9) ;
-   margin-left: calc(var(--pixel-size) * 10) ;
+   padding-right: calc(var(--pixel-size) * 3);
+   margin-top: calc(var(--pixel-size) * 9);
+   margin-left: calc(var(--pixel-size) * 10);
 }
 
 .HUD_PlayerState {
@@ -310,4 +332,5 @@ body {
 
    /* height: 500px; */
    image-rendering: pixelated;
+   /* transform: rotate( -20deg ); */
 }
